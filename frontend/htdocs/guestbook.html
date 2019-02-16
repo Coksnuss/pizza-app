@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de-DE">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gästebuch | Ristorante Pizzeria</title>
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    {{> scripts }}
+</head>
+<body>
+    {{> nav }}
+
+    <div class="wrapper">
+        <div class="uk-container">
+            <form id="guestbook-form" class="uk-width-1-2@l uk-align-center">
+                <fieldset class="uk-fieldset">
+                    <legend class="uk-legend">Eintrag verfassen</legend>
+
+                    <div class="uk-margin">
+                        <input class="uk-input" type="text" name="name" placeholder="Max Mustermann">
+                    </div>
+
+                    <div class="uk-margin">
+                        <input class="uk-input" type="text" name="visited_date" placeholder="Optional: Datum des Besuchs (Format: 01.01.2000)">
+                    </div>
+
+                    <div class="uk-margin">
+                        <select class="uk-select" name="rating">
+                            <option value="">Bewertung</option>
+                            <option value="1">1 - Sehr gut</option>
+                            <option value="2">2 - Gut</option>
+                            <option value="3">3 - Befriedigend</option>
+                            <option value="4">4 - Ausreichend</option>
+                            <option value="5">5 - Mangelhaft</option>
+                        </select>
+                    </div>
+
+                    <div class="uk-margin">
+                        <textarea class="uk-textarea" name="message" rows="5" placeholder="Tolles Ambiente, Nette Bedienung, Leckeres Essen, ..."></textarea>
+                    </div>
+
+                    <div class="uk-margin">
+                        <div class="uk-button-group uk-flex">
+                            <button class="uk-button uk-button-primary uk-width-1-2" type="button">Feedback Abschicken</button>
+                            <button class="uk-button uk-button-secondary uk-width-1-2" type="reset">Zurücksetzen</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+            <hr class="uk-divider-icon">
+
+            <div class="uk-section uk-section-muted uk-text-center">
+                <h3>Es sind keine Gästebucheinträge vorhanden!</h3>
+            </div>
+        </div>
+    </div>
+
+    {{> footer }}
+</body>
+</html>

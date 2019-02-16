@@ -1,0 +1,33 @@
+# Installation
+
+## Frontend
+Die nachfolgenden Befehle müssen in einer Konsole innerhalb des `frontend` Verzeichnisses ausgeführt werden:
+
+```
+npm ci
+npm start
+```
+
+In der Zukunft reicht es aus nur noch den Befehl `npm start` auszuführen um den Webserver zu starten.
+
+## Backend
+Die nachfolgenden Befehle müssen innerhalb des `backend` Verzeichnisses ausgeführt werden.
+
+### Windows Nutzer
+```
+composer install
+yii.bat migrate --interactive=0
+yii.bat fixture --interactive=0 *
+yii.bat serve
+```
+
+### Linux und Mac Nutzer
+```
+composer install
+./yii migrate --interactive=0
+./yii fixture --interactive=0 '*'
+./yii serve
+```
+
+In der Zukunft reicht es aus nur noch den Befehl `./yii serve` auszuführen um das Backend zu starten.
+
