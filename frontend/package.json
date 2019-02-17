@@ -1,0 +1,22 @@
+{
+  "name": "dhbw-web-lecture",
+  "version": "0.1.0",
+  "description": "Delicious Pizza",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "compile:less": "npx lessc --rewrite-urls=local -x styles.less htdocs/css/uikit.min.css",
+    "start": "node index.js"
+  },
+  "author": "Markus Schanz <schanz89@web.de>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "http-proxy-middleware": "^0.19.1",
+    "jquery": "^3.4.1",
+    "knockout": "^3.5.0",
+    "uikit": "^3.1.6"
+  },
+  "devDependencies": {}
+}
