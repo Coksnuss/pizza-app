@@ -12,4 +12,25 @@ ul.topnav {
 
 ul.topnav > li {
     display: inline-block;
+    border-bottom: .1rem solid #C5C5C5;
+}
+
+ul.topnav > li a {
+    display: block;
+    color: #333;
+    border-bottom: .2rem solid transparent;
+    margin-bottom: -.1rem;
+    padding: .8rem 1.4rem;
+    text-decoration: none;
+}
+
+ul.topnav > li.active a,
+ul.topnav > li a.active {
+    color: #3b49af;
+    border-bottom-color: #3b49af;
+}
+
+ul.topnav a:hover,
+ul.topnav a:focus {
+    color: #5764C6;
 }
