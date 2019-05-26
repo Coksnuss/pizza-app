@@ -9,53 +9,55 @@
 <body>
     {{> nav }}
 
-    <form id="guestbook-form">
-        <fieldset>
-            <legend>Eintrag verfassen</legend>
+    <div class="frow-container">
+        <form id="guestbook-form">
+            <fieldset>
+                <legend>Eintrag verfassen</legend>
 
-            <div>
-                <input type="text" name="name" placeholder="Max Mustermann">
-            </div>
+                <div>
+                    <input type="text" name="name" placeholder="Max Mustermann">
+                </div>
 
-            <div>
-                <input type="text" name="visited_date" placeholder="Optional: Datum des Besuchs (Format: 01.01.2000)">
-            </div>
+                <div>
+                    <input type="text" name="visited_date" placeholder="Optional: Datum des Besuchs (Format: 01.01.2000)">
+                </div>
 
-            <div>
-                <select name="rating">
-                    <option value="">Bewertung</option>
-                    <option value="1">1 - Sehr gut</option>
-                    <option value="2">2 - Gut</option>
-                    <option value="3">3 - Befriedigend</option>
-                    <option value="4">4 - Ausreichend</option>
-                    <option value="5">5 - Mangelhaft</option>
-                </select>
-            </div>
+                <div>
+                    <select name="rating">
+                        <option value="">Bewertung</option>
+                        <option value="1">1 - Sehr gut</option>
+                        <option value="2">2 - Gut</option>
+                        <option value="3">3 - Befriedigend</option>
+                        <option value="4">4 - Ausreichend</option>
+                        <option value="5">5 - Mangelhaft</option>
+                    </select>
+                </div>
 
-            <div>
-                <textarea name="message" rows="5" placeholder="Tolles Ambiente, Nette Bedienung, Leckeres Essen, ..."></textarea>
-            </div>
+                <div>
+                    <textarea name="message" rows="5" placeholder="Tolles Ambiente, Nette Bedienung, Leckeres Essen, ..."></textarea>
+                </div>
 
-            <div>
-                <button type="submit">Feedback Abschicken</button>
-                <button type="reset">Zurücksetzen</button>
-            </div>
-        </fieldset>
-    </form>
+                <div>
+                    <button type="submit">Feedback Abschicken</button>
+                    <button type="reset">Zurücksetzen</button>
+                </div>
+            </fieldset>
+        </form>
 
-    <hr />
+        <hr />
 
-    <article>
-        <header>
-            <h4>Mario Rossi</h4>
-            <p>1 - Sehr gut</p>
-            <div>
-                Verfasst am: 19.05.2019 19:19 Uhr<br />
-                Besucht am: 13.05.2019</span>
-            </div>
-        </header>
-        <p>Hervoragendes Essen und nettes Personal.</p>
-    </article>
+        <article>
+            <header>
+                <h4>Mario Rossi</h4>
+                <p>1 - Sehr gut</p>
+                <div>
+                    Verfasst am: 19.05.2019 19:19 Uhr<br />
+                    Besucht am: 13.05.2019</span>
+                </div>
+            </header>
+            <p>Hervoragendes Essen und nettes Personal.</p>
+        </article>
+    </div>
 
     {{> footer }}
 </body>

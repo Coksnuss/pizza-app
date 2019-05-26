@@ -9,188 +9,190 @@
 <body>
     {{> nav }}
 
-    <section>
-        <h1>Pizzen</h1>
-        <div>
-            <input type="search" placeholder="Pizza (z.B. Fungi) oder Belag (z.B. Schinken)" autofocus>
-        </div>
-
-        <div>
+    <div class="frow-container">
+        <section>
+            <h1>Pizzen</h1>
             <div>
-                <img src="/api/image/pizza?id=1" alt="Pizzabrot" />
+                <input type="search" placeholder="Pizza (z.B. Fungi) oder Belag (z.B. Schinken)" autofocus>
             </div>
+
             <div>
-                <h3>Pizzabrot</h3>
-                <p>Ohne alles</p>
-                <label>Stück (x 4,00€)</label>
-                <input type="text" value="0">
                 <div>
-                    <button>+</button>
-                    <button>-</button>
+                    <img src="/api/image/pizza?id=1" alt="Pizzabrot" />
+                </div>
+                <div>
+                    <h3>Pizzabrot</h3>
+                    <p>Ohne alles</p>
+                    <label>Stück (x 4,00€)</label>
+                    <input type="text" value="0">
+                    <div>
+                        <button>+</button>
+                        <button>-</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div>
             <div>
-                <img src="/api/image/pizza?id=2" alt="Margarita" />
-            </div>
-            <div>
-                <h3>Margarita</h3>
-                <p>Mit Emmentaler</p>
-                <label>Stück (x 4,50€)</label>
-                <input type="text" value="0">
                 <div>
-                    <button>+</button>
-                    <button>-</button>
+                    <img src="/api/image/pizza?id=2" alt="Margarita" />
+                </div>
+                <div>
+                    <h3>Margarita</h3>
+                    <p>Mit Emmentaler</p>
+                    <label>Stück (x 4,50€)</label>
+                    <input type="text" value="0">
+                    <div>
+                        <button>+</button>
+                        <button>-</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div>
             <div>
-                <img src="/api/image/pizza?id=3" alt="Mozzarella" />
-            </div>
-            <div>
-                <h3>Mozarella</h3>
-                <p>Mit Basilikum, Emmentaler und Mozzarella</p>
-                <label>Stück (x 6,50€)</label>
-                <input type="text" value="0">
                 <div>
-                    <button>+</button>
-                    <button>-</button>
+                    <img src="/api/image/pizza?id=3" alt="Mozzarella" />
+                </div>
+                <div>
+                    <h3>Mozarella</h3>
+                    <p>Mit Basilikum, Emmentaler und Mozzarella</p>
+                    <label>Stück (x 6,50€)</label>
+                    <input type="text" value="0">
+                    <div>
+                        <button>+</button>
+                        <button>-</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div>
             <div>
-                <img src="/api/image/pizza?id=4" alt="Fungi" />
-            </div>
-            <div>
-                <h3>Fungi</h3>
-                <p>Mit Emmentaler und Pilzen</p>
-                <label>Stück (x 5,30€)</label>
-                <input type="text" value="0">
                 <div>
-                    <button>+</button>
-                    <button>-</button>
+                    <img src="/api/image/pizza?id=4" alt="Fungi" />
                 </div>
-            </div>
-        </div>
-
-        <div>
-            <div>
-                <img src="/api/image/pizza?id=5" alt="Gemüse Spezial" />
-            </div>
-            <div>
-                <h3>Gemüse Spezial</h3>
-                <p>Mit Brokkoli, Pilzen, Mozzarella, Oliven, Spinat, Paprika und Tomaten</p>
-                <label>Stück (x 9,10€)</label>
-                <input type="text" value="0">
                 <div>
-                    <button>+</button>
-                    <button>-</button>
+                    <h3>Fungi</h3>
+                    <p>Mit Emmentaler und Pilzen</p>
+                    <label>Stück (x 5,30€)</label>
+                    <input type="text" value="0">
+                    <div>
+                        <button>+</button>
+                        <button>-</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div>
             <div>
-                <img src="/api/image/pizza?id=6" alt="Gonza" />
-            </div>
-            <div>
-                <h3>Gonza</h3>
-                <p>Mit Knoblauch, Gorgonzola und Spinat</p>
-                <label>Stück (x 5,40€)</label>
-                <input type="text" value="0">
                 <div>
-                    <button>+</button>
-                    <button>-</button>
+                    <img src="/api/image/pizza?id=5" alt="Gemüse Spezial" />
                 </div>
-            </div>
-        </div>
-
-        <div>
-            <div>
-                <img src="/api/image/pizza?id=7" alt="Vierkäsezeiten" />
-            </div>
-            <div>
-                <h3>Vierkäsezeiten</h3>
-                <p>Mit Schafskäse, Gorgonzola, Gouda und Mozzarella</p>
-                <label>Stück (x 7,50€)</label>
-                <input type="text" value="0">
                 <div>
-                    <button>+</button>
-                    <button>-</button>
+                    <h3>Gemüse Spezial</h3>
+                    <p>Mit Brokkoli, Pilzen, Mozzarella, Oliven, Spinat, Paprika und Tomaten</p>
+                    <label>Stück (x 9,10€)</label>
+                    <input type="text" value="0">
+                    <div>
+                        <button>+</button>
+                        <button>-</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <hr />
-
-    <section>
-        <h1>Bestellung</h1>
-
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="3">Lieferung</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <td colspan="2">Gesamtpreis</td>
-                    <td>20,90€</td>
-                </tr>
-            </tfoot>
-            <tbody>
-                <tr>
-                    <td>Fungi</td>
-                    <td>1</td>
-                    <td>5,30 €</td>
-                </tr>
-                <tr>
-                    <td>Mozzarella</td>
-                    <td>1</td>
-                    <td>6,50 €</td>
-                </tr>
-                <tr>
-                    <td>Gemüse Spezial</td>
-                    <td>1</td>
-                    <td>9,10 €</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <form id="order-form">
-            <fieldset>
-                <legend>Lieferadresse</legend>
-
+            <div>
                 <div>
-                    <input type="text" name="name" placeholder="Max Mustermann">
+                    <img src="/api/image/pizza?id=6" alt="Gonza" />
                 </div>
-
                 <div>
-                    <input type="text" name="street" placeholder="Musterstraße 10">
+                    <h3>Gonza</h3>
+                    <p>Mit Knoblauch, Gorgonzola und Spinat</p>
+                    <label>Stück (x 5,40€)</label>
+                    <input type="text" value="0">
+                    <div>
+                        <button>+</button>
+                        <button>-</button>
+                    </div>
                 </div>
+            </div>
 
+            <div>
                 <div>
-                    <input type="text" name="city" placeholder="12345 Musterhausen">
+                    <img src="/api/image/pizza?id=7" alt="Vierkäsezeiten" />
                 </div>
+                <div>
+                    <h3>Vierkäsezeiten</h3>
+                    <p>Mit Schafskäse, Gorgonzola, Gouda und Mozzarella</p>
+                    <label>Stück (x 7,50€)</label>
+                    <input type="text" value="0">
+                    <div>
+                        <button>+</button>
+                        <button>-</button>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                <div>
-                    <textarea rows="5" name="message" placeholder="Hinweise für die Bestellung"></textarea>
-                </div>
+        <hr />
 
-                <div>
-                    <button type="submit" disabled>Bestellen</button>
-                    <button type="reset">Zurücksetzen</button>
-                </div>
-            </fieldset>
-        </form>
-    </section>
+        <section>
+            <h1>Bestellung</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="3">Lieferung</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">Gesamtpreis</td>
+                        <td>20,90€</td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>Fungi</td>
+                        <td>1</td>
+                        <td>5,30 €</td>
+                    </tr>
+                    <tr>
+                        <td>Mozzarella</td>
+                        <td>1</td>
+                        <td>6,50 €</td>
+                    </tr>
+                    <tr>
+                        <td>Gemüse Spezial</td>
+                        <td>1</td>
+                        <td>9,10 €</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <form id="order-form">
+                <fieldset>
+                    <legend>Lieferadresse</legend>
+
+                    <div>
+                        <input type="text" name="name" placeholder="Max Mustermann">
+                    </div>
+
+                    <div>
+                        <input type="text" name="street" placeholder="Musterstraße 10">
+                    </div>
+
+                    <div>
+                        <input type="text" name="city" placeholder="12345 Musterhausen">
+                    </div>
+
+                    <div>
+                        <textarea rows="5" name="message" placeholder="Hinweise für die Bestellung"></textarea>
+                    </div>
+
+                    <div>
+                        <button type="submit" disabled>Bestellen</button>
+                        <button type="reset">Zurücksetzen</button>
+                    </div>
+                </fieldset>
+            </form>
+        </section>
+    </div>
 
     {{> footer }}
 </body>
