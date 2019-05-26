@@ -5,3 +5,11 @@ footer {
     padding: 1rem 1rem 5rem 1rem;
     color: #888;
 }
+
+ul.topnav {
+    list-style-type: none;
+}
+
+ul.topnav > li {
+    display: inline-block;
+}
