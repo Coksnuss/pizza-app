@@ -4,6 +4,7 @@ const formatPrice = priceAsFloat => priceAsFloat
         style: 'currency',
         currency: 'EUR',
     });
+const searchTerm = ko.observable('');
 const pizzalist = [
     { name: 'Pizzabrot', price: 4.00, imgUrl: '/api/image/pizza?id=1', toppings: 'Mit ohne alles', quantity: ko.observable(0) },
     { name: 'Margarita', price: 4.50, imgUrl: '/api/image/pizza?id=2', toppings: 'Mit Emmentaler', quantity: ko.observable(0) },
@@ -13,6 +14,13 @@ const pizzalist = [
     { name: 'Gonza', price: 5.40, imgUrl: '/api/image/pizza?id=6', toppings: 'Mit Knoblauch, Gorgonzola und Spinat', quantity: ko.observable(0) },
     { name: 'Vierkäsezeiten', price: 7.50, imgUrl: '/api/image/pizza?id=7', toppings: 'Mit Schafskäse, Gorgonzola, Gouda und Mozzarella', quantity: ko.observable(0) },
 ];
+const filteredPizzalist = ko.computed(() =>
+    pizzalist.filter(pizza =>
+        searchTerm().length === 0 ||
+        pizza.name.toLowerCase().includes(searchTerm().toLowerCase()) ||
+        pizza.toppings.toLowerCase().includes(searchTerm().toLowerCase())
+    )
+);
 const shoppingCart = ko.computed(() => {
     const items = pizzalist
         .filter(pizza => {
@@ -46,7 +54,8 @@ const remove = pizza => {
 
 ko.applyBindings({
     formatPrice: formatPrice,
-    pizza: pizzalist,
+    search: searchTerm,
+    pizza: filteredPizzalist,
     cart: shoppingCart,
     add: add,
     remove: remove,
