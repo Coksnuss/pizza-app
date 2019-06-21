@@ -42,13 +42,13 @@
                                         </div>
                                         <div class="uk-width-1-3@l">
                                             <div class="uk-form-controls">
-                                                <input class="uk-input" type="text" placeholder="0">
+                                                <input class="uk-input" type="text" placeholder="0" data-bind="textInput: quantity">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="uk-button-group uk-flex">
-                                        <button class="uk-button uk-button-default uk-width-1-2 uk-text-large">+</button>
-                                        <button class="uk-button uk-button-default uk-width-1-2 uk-text-large">-</button>
+                                        <button class="uk-button uk-button-default uk-width-1-2 uk-text-large" data-bind="click: add">+</button>
+                                        <button class="uk-button uk-button-default uk-width-1-2 uk-text-large" data-bind="click: remove">-</button>
                                     </div>
                                 </div>
                             </div>
