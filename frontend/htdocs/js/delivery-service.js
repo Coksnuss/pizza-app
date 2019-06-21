@@ -1,3 +1,9 @@
+const formatPrice = priceAsFloat => priceAsFloat
+    // https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString
+    .toLocaleString('de-DE', {
+        style: 'currency',
+        currency: 'EUR',
+    });
 const pizzalist = [
     { name: 'Pizzabrot', price: 4.00, imgUrl: '/api/image/pizza?id=1', toppings: 'Mit ohne alles' },
     { name: 'Margarita', price: 4.50, imgUrl: '/api/image/pizza?id=2', toppings: 'Mit Emmentaler' },
@@ -9,5 +15,6 @@ const pizzalist = [
 ];
 
 ko.applyBindings({
+    formatPrice: formatPrice,
     pizza: pizzalist,
 });
