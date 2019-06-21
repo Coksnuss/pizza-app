@@ -1,16 +1,8 @@
 (() => {
   const setActiveCSSClassToNavigationLinks = selector => {
-    const navLiElements = $(selector);
-
-    navLiElements.each((index, liElement) => {
-      const anchorElement = $('a', liElement);
-      const href = anchorElement.attr('href');
-      const pathname = document.location.pathname;
-
-      if (href === pathname) {
-        $(liElement).addClass('uk-active');
-      }
-    });
+    $(selector)
+      .filter((index, liElement) => $('a', liElement).attr('href') === document.location.pathname)
+      .addClass('uk-active');
   }
 
   setActiveCSSClassToNavigationLinks('#navigation-header li');
