@@ -13,6 +13,22 @@ const pizzalist = [
     { name: 'Gonza', price: 5.40, imgUrl: '/api/image/pizza?id=6', toppings: 'Mit Knoblauch, Gorgonzola und Spinat', quantity: ko.observable(0) },
     { name: 'Vierkäsezeiten', price: 7.50, imgUrl: '/api/image/pizza?id=7', toppings: 'Mit Schafskäse, Gorgonzola, Gouda und Mozzarella', quantity: ko.observable(0) },
 ];
+const shoppingCart = ko.computed(() => {
+    const items = pizzalist
+        .filter(pizza => {
+            return pizza.quantity() > 0;
+        })
+        .map(pizza => ({
+            name: pizza.name,
+            quantity: pizza.quantity(),
+            price: pizza.quantity() * pizza.price,
+        }));
+
+    return {
+        items: items,
+        totalPrice: items.reduce((total, item) => total + item.price, 0),
+    };
+});
 const add = pizza => {
     const currentQuantity = pizza.quantity();
 
@@ -31,6 +47,7 @@ const remove = pizza => {
 ko.applyBindings({
     formatPrice: formatPrice,
     pizza: pizzalist,
+    cart: shoppingCart,
     add: add,
     remove: remove,
 });

@@ -61,7 +61,7 @@
                 <section class="uk-width-1-4@l uk-grid-margin">
                     <h1>Bestellung</h1>
 
-                    <table class="uk-table uk-table-middle uk-table-divider uk-table-justify">
+                    <table class="uk-table uk-table-middle uk-table-divider uk-table-justify" data-bind="visible: cart().items.length > 0">
                         <thead>
                             <tr>
                                 <th colspan="3">Lieferung</th>
@@ -70,24 +70,14 @@
                         <tfoot class="uk-text-bold">
                             <tr>
                                 <td colspan="2">Gesamtpreis</td>
-                                <td class="uk-text-right">19,00 €</td>
+                                <td class="uk-text-right" data-bind="text: formatPrice(cart().totalPrice)"></td>
                             </tr>
                         </tfoot>
-                        <tbody class="uk-text-small">
+                        <tbody class="uk-text-small" data-bind="foreach: cart().items">
                             <tr>
-                                <td class="uk-table-expand uk-text-truncate"><span class="uk-text-truncate">Pizzabrot</span></td>
-                                <td class="uk-table-shrink">2</td>
-                                <td class="uk-width-small uk-text-right">8,00 €</td>
-                            </tr>
-                            <tr>
-                                <td class="uk-table-expand uk-text-truncate"><span class="uk-text-truncate">Margarita</span></td>
-                                <td class="uk-table-shrink">1</td>
-                                <td class="uk-width-small uk-text-right">4,50 €</td>
-                            </tr>
-                            <tr>
-                                <td class="uk-table-expand uk-text-truncate"><span class="uk-text-truncate">Mozzarella</span></td>
-                                <td class="uk-table-shrink">1</td>
-                                <td class="uk-width-small uk-text-right">6,50 €</td>
+                                <td class="uk-table-expand uk-text-truncate"><span class="uk-text-truncate" data-bind="text: name"></span></td>
+                                <td class="uk-table-shrink" data-bind="text: quantity"></td>
+                                <td class="uk-width-small uk-text-right" data-bind="text: formatPrice(price)"></td>
                             </tr>
                         </tbody>
                     </table>
