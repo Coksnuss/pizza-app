@@ -7,9 +7,11 @@ const https = require('https');
 
 const express = require('express');
 const exphbs  = require('express-handlebars');
+const bodyParser = require('body-parser');
 const proxy = require('http-proxy-middleware');
 
 const isHelper = require('./handlebars.is.js');
+const guestbook = require('./guestbook.js');
 
 // ----------------
 // Config Webserver
@@ -28,10 +30,11 @@ app.set('view engine', 'html');
 app.set('views', './htdocs');
 const serveHtml = (req, res) => {
   const path = req.originalUrl.substr(1) || 'index.html';
-  res.render(path, { path });
+  res.render(path, { ...res.variables, path });
 };
+app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', (req, res) => { serveHtml(req, res); });
-app.get(/.*\.html$/, (req, res) => { serveHtml(req, res); });
+app.use(/.*\.html$/, guestbook('guestbook.html'), (req, res) => { serveHtml(req, res); });
 
 // Serve files from htdocs under / and files from node_modules under /vendor
 app.use(express.static('htdocs'));
