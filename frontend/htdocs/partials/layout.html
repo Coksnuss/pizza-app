@@ -9,7 +9,6 @@
     <script defer src="/vendor/uikit/dist/js/uikit-icons.min.js"></script>
     <script src="/vendor/jquery/dist/jquery.slim.min.js"></script>
     <script src="/vendor/knockout/build/output/knockout-latest.js"></script>
-    <script defer src="/js/navigation-jquery.js"></script>
 
     <!-- Skripte und CSS Sheets die nicht auf allen Unterseiten benötigt werden -->
     {{#> head}}
@@ -25,9 +24,9 @@
                     </a>
                 </div>
                 <div class="uk-navbar-right">
-                    <ul id="navigation-header" class="uk-navbar-nav">
-                        <li><a href="/">Bestellen</a></li>
-                        <li><a href="/guestbook.html">Gästebuch</a></li>
+                    <ul class="uk-navbar-nav">
+                        <li class="{{#is path 'index.html'}}uk-active{{/is}}"><a href="/">Bestellen</a></li>
+                        <li class="{{#is path 'guestbook.html'}}uk-active{{/is}}"><a href="/guestbook.html">Gästebuch</a></li>
                     </ul>
                 </div>
             </nav>
@@ -46,11 +45,11 @@
                     </ul>
                 </div>
                 <div>
-                    <ul id="navigation-footer" class="uk-nav uk-nav-default">
+                    <ul class="uk-nav uk-nav-default">
                         <li class="uk-nav-header">Über uns</li>
-                        <li><a href="/terms.html">AGB</a></li>
-                        <li><a href="/map.html">Anfahrt</a></li>
-                        <li><a href="/imprint.html">Impressum</a></li>
+                        <li class="{{#is path 'terms.html'}}uk-active{{/is}}"><a href="/terms.html">AGB</a></li>
+                        <li class="{{#is path 'map.html'}}uk-active{{/is}}"><a href="/map.html">Anfahrt</a></li>
+                        <li class="{{#is path 'imprint.html'}}uk-active{{/is}}"><a href="/imprint.html">Impressum</a></li>
                     </ul>
                 </div>
                 <div>
