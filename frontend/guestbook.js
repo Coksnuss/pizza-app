@@ -50,25 +50,25 @@ const guestbook = (() => {
 })();
 
 // Fixtures
-// guestbook.addEntry({
-//     name: 'Doreen Ackerman',
-//     visited_date: '19.09.2017 18:00',
-//     rating: '3',
-//     message: 'Essen war gut aber viel zu lange Wartezeiten'
-// });
+guestbook.addEntry({
+    name: 'Doreen Ackerman',
+    visited_date: '19.09.2017 18:00',
+    rating: '3',
+    message: 'Essen war gut aber viel zu lange Wartezeiten'
+});
 
-// guestbook.addEntry({
-//     name: 'Steffen Hahn',
-//     rating: '5',
-//     message: 'Alles toll! Essen war lecker!'
-// });
+guestbook.addEntry({
+    name: 'Steffen Hahn',
+    rating: '5',
+    message: 'Alles toll! Essen war lecker!'
+});
 
-// guestbook.addEntry({
-//     name: 'Robert Fürst',
-//     visited_date: '23.09.2017 21:20',
-//     rating: '4',
-//     message: 'Fast perfekt. Aber Austern waren aus!'
-// });
+guestbook.addEntry({
+    name: 'Robert Fürst',
+    visited_date: '23.09.2017 21:20',
+    rating: '4',
+    message: 'Fast perfekt. Aber Austern waren aus!'
+});
 
 module.exports = guestbookPath => (req, res, next) => {
     const path = req.originalUrl.substr(1);

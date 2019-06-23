@@ -44,6 +44,32 @@
                 <h3>Es sind keine Gästebucheinträge vorhanden!</h3>
             </div>
             {{/unless}}
+
+            {{#each entries}}
+            <article class="uk-comment uk-comment-primary uk-margin-medium uk-position-relative">
+                <header class="uk-comment-header uk-grid-medium" uk-grid>
+                    <div class="uk-width-expand">
+                        <h4 class="uk-comment-title uk-margin-remove">
+                            <span class="uk-label">{{name}}</span>
+                        </h4>
+                        <div class="uk-comment-meta">
+                            <span class="uk-text-uppercase">{{rating_string}}</span>
+                        </div>
+                    </div>
+                    <div class="uk-width-auto">
+                        <div class="uk-comment-meta">
+                            Verfasst am: {{authored_date}}<br />
+                            {{#if visited_date}}
+                            Besucht am: {{visited_date}}
+                            {{/if}}
+                        </div>
+                    </div>
+                </header>
+                <div class="uk-comment-body">
+                    <p>{{message}}</p>
+                </div>
+            </article>
+            {{/each}}
         </div>
     </div>
 {{/layout}}
