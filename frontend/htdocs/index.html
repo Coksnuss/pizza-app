@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="de-DE">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pizza Bestellen | Ristorante Pizzeria</title>
-    <link rel="stylesheet" href="css/uikit.min.css" />
-    {{> scripts }}
-    <script defer src="/js/delivery-service.js"></script>
-</head>
-<body>
-    {{> nav }}
-
+{{#> layout }}
     <div class="wrapper uk-position-relative">
         <div class="uk-container">
             <div class="uk-grid-small" data-uk-grid>
@@ -114,8 +102,4 @@
             </div>
         </div>
     </div>
-
-    {{> footer }}
-</body>
-</html>
-
+{{/layout}}

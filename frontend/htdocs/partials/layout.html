@@ -1,3 +1,41 @@
+<!DOCTYPE html>
+<html lang="de-DE">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pizza Bestellen | Ristorante Pizzeria</title>
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <script defer src="/vendor/uikit/dist/js/uikit.min.js"></script>
+    <script defer src="/vendor/uikit/dist/js/uikit-icons.min.js"></script>
+    <script src="/vendor/jquery/dist/jquery.slim.min.js"></script>
+    <script src="/vendor/knockout/build/output/knockout-latest.js"></script>
+    <script defer src="/js/navigation-jquery.js"></script>
+
+    <!-- Skripte und CSS Sheets die nicht auf allen Unterseiten benötigt werden -->
+    <link rel="stylesheet" href="css/map.css" />
+    <script defer src="/js/delivery-service.js"></script>
+</head>
+<body>
+    <header class="uk-navbar-container">
+        <div class="uk-container">
+            <nav data-uk-navbar>
+                <div class="uk-navbar-left">
+                    <a href="/" class="uk-navbar-item">
+                        <img src="img/logo.png" alt="Ristorante Pizzeria" />
+                    </a>
+                </div>
+                <div class="uk-navbar-right">
+                    <ul id="navigation-header" class="uk-navbar-nav">
+                        <li><a href="/">Bestellen</a></li>
+                        <li><a href="/guestbook.html">Gästebuch</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    {{> @partial-block }}
+
     <footer class="uk-text-small uk-text-muted uk-link-muted">
         <div class="uk-container uk-container-expand">
             <div class="uk-grid-large uk-flex-around" data-uk-grid>
@@ -48,3 +86,5 @@
             </div>
         </div>
     </div>
+</body>
+</html>

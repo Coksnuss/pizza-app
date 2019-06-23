@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="de-DE">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gästebuch | Ristorante Pizzeria</title>
-    <link rel="stylesheet" href="css/uikit.min.css" />
-    {{> scripts }}
-</head>
-<body>
-    {{> nav }}
-
+{{#> layout }}
     <div class="wrapper">
         <div class="uk-container">
             <form id="guestbook-form" class="uk-width-1-2@l uk-align-center">
@@ -55,7 +44,4 @@
             </div>
         </div>
     </div>
-
-    {{> footer }}
-</body>
-</html>
+{{/layout}}
