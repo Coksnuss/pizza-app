@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 const proxy = require('http-proxy-middleware');
 
 const isHelper = require('./handlebars.is.js');
+const selectHelper = require('./handlebars.select.js');
 const guestbook = require('./guestbook.js');
 
 // ----------------
@@ -24,7 +25,7 @@ app.engine('html', exphbs({
   extname: '.html',
   // defaultLayout: 'main',
   defaultLayout: false,
-  helpers: { is: isHelper },
+  helpers: { is: isHelper, select: selectHelper },
 }));
 app.set('view engine', 'html');
 app.set('views', './htdocs');

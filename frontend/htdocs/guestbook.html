@@ -6,26 +6,28 @@
                     <legend class="uk-legend">Eintrag verfassen</legend>
 
                     <div class="uk-margin">
-                        <input class="uk-input" type="text" name="name" placeholder="Max Mustermann">
+                        <input class="uk-input" type="text" name="name" value="{{formData.name}}" placeholder="Max Mustermann">
                     </div>
 
                     <div class="uk-margin">
-                        <input class="uk-input" type="text" name="visited_date" placeholder="Optional: Datum des Besuchs (Format: 01.01.2000)">
+                        <input class="uk-input" type="text" name="visited_date" value="{{formData.visited_date}}" placeholder="Optional: Datum des Besuchs (Format: 01.01.2000)">
                     </div>
 
                     <div class="uk-margin">
                         <select class="uk-select" name="rating">
+                            {{#select formData.rating}}
                             <option value="">Bewertung</option>
                             <option value="1">1 - Sehr gut</option>
                             <option value="2">2 - Gut</option>
                             <option value="3">3 - Befriedigend</option>
                             <option value="4">4 - Ausreichend</option>
                             <option value="5">5 - Mangelhaft</option>
+                            {{/select}}
                         </select>
                     </div>
 
                     <div class="uk-margin">
-                        <textarea class="uk-textarea" name="message" rows="5" placeholder="Tolles Ambiente, Nette Bedienung, Leckeres Essen, ..."></textarea>
+                        <textarea class="uk-textarea" name="message" rows="5" placeholder="Tolles Ambiente, Nette Bedienung, Leckeres Essen, ...">{{formData.message}}</textarea>
                     </div>
 
                     <div class="uk-margin">
