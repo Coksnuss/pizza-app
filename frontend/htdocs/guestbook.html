@@ -39,9 +39,11 @@
 
             <hr class="uk-divider-icon">
 
+            {{#unless entries}}
             <div class="uk-section uk-section-muted uk-text-center">
                 <h3>Es sind keine Gästebucheinträge vorhanden!</h3>
             </div>
+            {{/unless}}
         </div>
     </div>
 {{/layout}}
