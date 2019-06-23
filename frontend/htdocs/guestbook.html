@@ -1,20 +1,33 @@
 {{#> layout title="Gästebuch" }}
     <div class="wrapper">
         <div class="uk-container">
+            {{#if recordWasAdded}}
+            <div class="uk-alert-success" uk-alert>
+                <a class="uk-alert-close" uk-close></a>
+                Vielen Dank für Ihren Eintrag!
+            </div>
+            {{/if}}
+
             <form id="guestbook-form" method="post" class="uk-width-1-2@l uk-align-center">
                 <fieldset class="uk-fieldset">
                     <legend class="uk-legend">Eintrag verfassen</legend>
 
                     <div class="uk-margin">
-                        <input class="uk-input" type="text" name="name" value="{{formData.name}}" placeholder="Max Mustermann">
+                        <input class="uk-input {{#if formErrors.name}}uk-form-danger{{/if}}" type="text" name="name" value="{{formData.name}}" placeholder="Max Mustermann">
+                        {{#if formErrors.name}}
+                        <div class="uk-text-small uk-text-danger">{{formErrors.name}}</div>
+                        {{/if}}
                     </div>
 
                     <div class="uk-margin">
-                        <input class="uk-input" type="text" name="visited_date" value="{{formData.visited_date}}" placeholder="Optional: Datum des Besuchs (Format: 01.01.2000)">
+                        <input class="uk-input {{#if formErrors.visited_date}}uk-form-danger{{/if}}" type="text" name="visited_date" value="{{formData.visited_date}}" placeholder="Optional: Datum des Besuchs (Format: 01.01.2000)">
+                        {{#if formErrors.visited_date}}
+                        <div class="uk-text-small uk-text-danger">{{formErrors.visited_date}}</div>
+                        {{/if}}
                     </div>
 
                     <div class="uk-margin">
-                        <select class="uk-select" name="rating">
+                        <select class="uk-select {{#if formErrors.rating}}uk-form-danger{{/if}}" name="rating">
                             {{#select formData.rating}}
                             <option value="">Bewertung</option>
                             <option value="1">1 - Sehr gut</option>
@@ -24,10 +37,16 @@
                             <option value="5">5 - Mangelhaft</option>
                             {{/select}}
                         </select>
+                        {{#if formErrors.rating}}
+                        <div class="uk-text-small uk-text-danger">{{formErrors.rating}}</div>
+                        {{/if}}
                     </div>
 
                     <div class="uk-margin">
-                        <textarea class="uk-textarea" name="message" rows="5" placeholder="Tolles Ambiente, Nette Bedienung, Leckeres Essen, ...">{{formData.message}}</textarea>
+                        <textarea class="uk-textarea {{#if formErrors.message}}uk-form-danger{{/if}}" name="message" rows="5" placeholder="Tolles Ambiente, Nette Bedienung, Leckeres Essen, ...">{{formData.message}}</textarea>
+                        {{#if formErrors.message}}
+                        <div class="uk-text-small uk-text-danger">{{formErrors.message}}</div>
+                        {{/if}}
                     </div>
 
                     <div class="uk-margin">
