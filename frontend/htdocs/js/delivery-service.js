@@ -38,14 +38,19 @@ const shoppingCart = ko.computed(() => {
     };
 });
 const add = pizza => {
-    const currentQuantity = pizza.quantity();
+    // parseInt(zahl, Basis). Die Angabe der Basis ist optional.
+    // Die MDN Dokumentation empfiehlt die Basis immer explizit anzugeben
+    // Siehe auch: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt#Description
+    const currentQuantity = parseInt(pizza.quantity(), 10);
 
     if (currentQuantity < 10) {
         pizza.quantity(currentQuantity + 1);
     }
 }
 const remove = pizza => {
-    const currentQuantity = pizza.quantity();
+    // Eine weitere bequeme Variante für den Cast eines unbekannten Typs in eine Zahl ist das unäre Plus.
+    // Siehe auch: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Unary_plus_()
+    const currentQuantity = +pizza.quantity();
 
     if (currentQuantity > 0) {
         pizza.quantity(currentQuantity - 1);
