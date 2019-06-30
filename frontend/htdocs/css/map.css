@@ -1,0 +1,9 @@
+.wrapper {
+    text-align: center;
+}
+iframe {
+    height: 600px;
+    width: 800px;
+    border:0;
+    margin: 0 auto;
+}

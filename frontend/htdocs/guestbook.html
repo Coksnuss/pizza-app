@@ -1,0 +1,112 @@
+{{#> layout title="Gästebuch" }}
+{{#*inline "head"}}
+    <script src="/js/guestbook.js" type="module"></script>
+{{/inline}}
+    <div class="wrapper">
+        <div class="uk-container">
+            <form id="guestbook-form" class="uk-width-1-2@l uk-align-center" data-bind="submit: sendForm">
+                <fieldset class="uk-fieldset">
+                    <legend class="uk-legend">Eintrag verfassen</legend>
+
+                    <div class="uk-margin">
+                        <input class="uk-input" type="text" name="name" placeholder="Max Mustermann">
+                    </div>
+
+                    <div class="uk-margin">
+                        <input class="uk-input" type="text" name="visited_date" placeholder="Optional: Datum des Besuchs (Format: 01.01.2000)">
+                    </div>
+
+                    <div class="uk-margin">
+                        <select class="uk-select" name="rating">
+                            <option value="">Bewertung</option>
+                            <option value="1">1 - Sehr gut</option>
+                            <option value="2">2 - Gut</option>
+                            <option value="3">3 - Befriedigend</option>
+                            <option value="4">4 - Ausreichend</option>
+                            <option value="5">5 - Mangelhaft</option>
+                        </select>
+                    </div>
+
+                    <div class="uk-margin">
+                        <textarea class="uk-textarea" name="message" rows="5" placeholder="Tolles Ambiente, Nette Bedienung, Leckeres Essen, ..."></textarea>
+                    </div>
+
+                    <div class="uk-margin">
+                        <div class="uk-button-group uk-flex">
+                            <button class="uk-button uk-button-primary uk-width-1-2" type="submit">Feedback Abschicken</button>
+                            <button class="uk-button uk-button-secondary uk-width-1-2" type="reset">Zurücksetzen</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+            <hr class="uk-divider-icon">
+
+            <div class="uk-position-relative uk-height-medium" data-bind="attr: { hidden: !isLoading() }">
+                <div class="uk-position-center">
+                    <div uk-spinner="ratio: 5"></div>
+                </div>
+            </div>
+
+            <div data-bind="attr: { hidden: isLoading() }" hidden>
+                <div data-bind="foreach: entries">
+                    <article class="uk-comment uk-comment-primary uk-margin-medium uk-position-relative">
+                        <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+                            <button hidden class="uk-button uk-button-danger uk-position-bottom-right"
+                                    data-bind="attr: { hidden: !$parent.isAdmin() }, click: $parent.deleteEntry">
+                                <span uk-icon="icon: trash"></span>
+                            </button>
+                            <div class="uk-width-expand">
+                                <h4 class="uk-comment-title uk-margin-remove">
+                                    <span class="uk-label" data-bind="text: name"></span>
+                                </h4>
+                                <div class="uk-comment-meta">
+                                    <span class="uk-text-uppercase" data-bind="text: ratingAsString"></span>
+                                </div>
+                            </div>
+                            <div class="uk-width-auto">
+                                <div class="uk-comment-meta">
+                                    Verfasst am: <span data-bind="text: authored_at"></span><br />
+                                    <span data-bind="attr: { hidden: !visited_date }">
+                                        Besucht am: <span data-bind="text: visited_date"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </header>
+                        <div class="uk-comment-body">
+                            <p data-bind="text: message"></p>
+                        </div>
+                    </article>
+                </div>
+
+                <div data-bind="attr: { hidden: entries().length > 0 }" hidden>
+                    <div class="uk-section uk-section-muted uk-text-center">
+                        <h3>Es sind keine Gästebucheinträge vorhanden!</h3>
+                    </div>
+                </div>
+
+                <ul class="uk-pagination uk-flex-center" data-bind="attr: { hidden: entries().length === 0 }" uk-margin>
+                    <li data-bind="visible: currentPage() > 1">
+                        <a href="#" data-bind="click: loadPrevPage">
+                            <span class="uk-margin-small-right" uk-pagination-previous></span>
+                            Zurück
+                        </a>
+                    </li>
+                    <li data-bind="visible: currentPage() !== 1"><a href="#" data-bind="click: loadPage.bind(null, 1)">1</a></li>
+                    <li data-bind="visible: currentPage() > 3" class="uk-disabled"><span>...</span></li>
+                    <li data-bind="visible: currentPage() > 2"><a href="#" data-bind="text: currentPage() - 1, click: loadPrevPage"></a></li>
+                    <li class="uk-active"><span data-bind="text: currentPage"></span></li>
+                    <li data-bind="visible: pageCount() - currentPage() > 1"><a href="#" data-bind="text: currentPage() + 1, click: loadNextPage"></a></li>
+                    <li data-bind="visible: pageCount() - currentPage() > 2" class="uk-disabled"><span>...</span></li>
+                    <li data-bind="visible: currentPage() !== pageCount()"><a href="#" data-bind="text: pageCount, click: loadPage.bind(null, pageCount())"></a></li>
+                    <li data-bind="visible: pageCount() > currentPage()">
+                        <a href="#" data-bind="click: loadNextPage">
+                            Vor
+                            <span class="uk-margin-small-left" uk-pagination-next></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{{/layout}}
