@@ -182,6 +182,17 @@ const sendForm = async form => {
   //    Formulardaten in dieses Format zu konvertieren können Sie folgenden
   //    Funktionsaufruf nutzen:
   //      $(form).seralize()
+
+  resetFormErrors('guestbook-form'); // Siehe Punkt 3)
+
+  try {
+    const response = await fetch(`${apiBaseUrl}/guestbook`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: $(form).serialize(),
+    });
   // 2) Im Erfolgsfall antwortet die REST API mit dem Statuscode 201 Created.
   //    Setzen Sie in diesem Fall das Formular programmatisch zurück, damit die
   //    Formularfelder nicht weiterhin ausgefüllt bleiben. Zeigen Sie außerdem
@@ -190,6 +201,10 @@ const sendForm = async form => {
   //    Laden Sie im Erfolgsfall außerdem die erste Seite der Gästebucheinträge
   //    neu.
   //    Siehe auch: https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset
+    if (response.ok) {
+        form.reset();
+        UIkit.notification('Eintrag erfolgreich hinzugefügt!', { status: 'success' });
+        await loadPage(1);
   // 3) Im Fehlerfall antwortet die REST API mit einem 422 Data Validation Failed
   //    Status Code. In diesem Fall enthält die Antwort eine Liste von
   //    Validierungsfehlern in dem folgenden Format:
@@ -205,10 +220,24 @@ const sendForm = async form => {
   //    zurückgegebenen Fehler im Formular anzuzeigen. Setzen Sie außerdem beim
   //    erneuten Abschicken des Formulars alle Fehlermeldungen zurück, damit
   //    diese nicht fälschlicherweise weiterhin angezeigt werden.
+    } else if (response.status === 422) {
+        const validationErrors = await response.json();
+
+        // Beispiel für eine Destrukturierende Zuweisung, direkt im Funktionskopf
+        // https://schanz.pages.tracklog.io/web-lecture/05_javascript.html#63
+        validationErrors.forEach(({ field, message }) => {
+            displayFormError('guestbook-form', field, message);
+        });
   // 4) Fangen Sie auch ggf. andere Fehlercodes ab und zeigen Sie eine
   //    generische Fehlermeldung an.
+    } else {
+        UIkit.notification(`Fehler: HTTP Status Code ${response.status}`, { status: 'danger' });
+    }
   // 5) Behandeln Sie den Fall, dass fetch() eine Exception wirft (d.h. dass das
   //    von fetch() zurückgegebene Promise in den Zustand rejected übergeht)
+  } catch (err) {
+    UIkit.notification(`Fehler! ${err.message}`, { status: 'danger' });
+  }
 };
 
 loadPage(currentPage());
