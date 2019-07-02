@@ -73,6 +73,11 @@ const sendForm = async form => {
   // von durch createPizzaInstance erstellten Pizzen zu füllen.
   // Nach der vollständigen Abarbeitung der Anfrage muss außerdem das isLoading
   // Observable auf false gesetzt werden.
+  const response = await fetch(`${apiBaseUrl}/pizza`);
+  const pizzasFromApi = await response.json();
+
+  pizzas(pizzasFromApi.map(createPizzaInstance));
+  isLoading(false);
 })();
 
 ko.applyBindings({
