@@ -42,16 +42,21 @@ const loadPage = async (page) => {
   //    der Anfrage soll der Wert auf false gesetzt werden. Der Zweck ist die
   //    Anzeige eines "Loading Spinners" im frontend um dem Anwender der Seite
   //    zu signalisieren, dass ein Ladevorgang in Gange ist.
+  isLoading(true);
   // 2) Die Gästebucheinträge der angefragten Seite (page Parameter der Funktion)
   //    sollen mittels fetch abgefragt werden. Für die kommende Übung wird es
   //    nötig die API URL anzupassen. Nutzen Sie daher für die Konstruktion der
   //    anzufragenden URL die Variable apiBaseUrl (die momentan den Wert '/api'
   //    hat). Denken Sie auch in den nachfolgenden Aufgaben daran die Variable
   //    zu nutzen.
+  try {
+    const response = await fetch(`${apiBaseUrl}/guestbook?page=${page}`);
   // 3) Die beiden observables 'currentPage' und 'pageCount' sollen entsprechend
   //    dem Wert der X-Pagination-Current-Page und X-Pagination-Page-Count
   //    Header gesetzt werden. Achten Sie dabei darauf den Wert als Zahl, nicht
   //    als String zu setzen.
+    currentPage(+response.headers.get('X-Pagination-Current-Page'));
+    pageCount(+response.headers.get('X-Pagination-Page-Count'));
   // 4) Das observable 'entries' soll mit den Gästebucheinträgen für die
   //    angefragte Seite gefüllt werden. Parsen Sie dazu den Payload (HTTP body)
   //    der Antwort in ein Objekt, so dass Sie mit den von der API gelieferten
@@ -71,6 +76,13 @@ const loadPage = async (page) => {
   //    timestamp ein lesbares Datum/Zeit Format enthalten. Sie können für die
   //    Transformierung auf die timestampToDateTime Funktion aus dem util.js
   //    Modul zurückgreifen.
+    const entriesFromApi = await response.json();
+    const enhancedEntries = entriesFromApi.map((entryFromApi) => ({
+      ...entryFromApi,
+      ratingAsString: `${entryFromApi.rating} - ${entryFromApi.ratingText}`,
+      authored_at: timestampToDateTime(entryFromApi.authored_at * 1000).join(' '),
+    }));
+    entries(enhancedEntries);
   // 5) Die Fetch API nutzt den Rejected State des von fetch() zurückgegebenen
   //    Promises um zu signalisieren, dass die Anfrage nicht wie gewünscht
   //    ausgeführt werden konnte. Dieser Fall tritt zum Beispiel auf wenn keine
@@ -78,6 +90,15 @@ const loadPage = async (page) => {
   //    rejected Promises und nutzen Sie die folgende Funktion um eine
   //    Fehlermeldung auszugeben:
   //      UIkit.notification('Fehlermeldung!', { status: 'danger' });
+  } catch (err) {
+    // A fetch() promise will reject with a TypeError when a network error is encountered
+    // or CORS is misconfigured on the server side.
+    // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#Checking_that_the_fetch_was_successful
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError
+    UIkit.notification(`Fehler! ${err.message}`, { status: 'danger' });
+  } finally {
+    isLoading(false); // Siehe Punkt 1)
+  }
 };
 const deleteEntry = async entry => {
   if (!confirm('Soll dieser Eintrag wirklich gelöscht werden?')) return;
