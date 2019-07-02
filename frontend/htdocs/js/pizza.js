@@ -48,12 +48,30 @@ const sendForm = async form => {
   // stellen Sie die Validierungsfehler im Formular entsprechend dar.
   // Im Erfolgsfall (200er Response) können Sie z.B. die unten stehende
   // Dummy-Meldung zeigen.
-  UIkit.notification('Leider sind derzeit keine Online-Bestellungen möglich. '
-      + 'Sie können Ihre Bestellung stattdessen telefonisch aufgeben:<br />'
-      + '+49 172 476 6831', {
-    timeout: 0,
-    status: 'warning'
+  resetFormErrors('order-form');
+
+  const response = await fetch(`${apiBaseUrl}/order`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: $(form).serialize(),
   });
+
+  if (response.ok) {
+    form.reset();
+    UIkit.notification('Leider sind derzeit keine Online-Bestellungen möglich. '
+          + 'Sie können Ihre Bestellung stattdessen telefonisch aufgeben:<br />'
+          + '+49 172 476 6831', {
+        timeout: 0,
+        status: 'warning'
+    });
+  } else if (response.status === 422) {
+    const validationErrors = await response.json();
+    validationErrors.forEach(({ field, message }) => {
+        displayFormError('order-form', field, message);
+    });
+  }
 };
 
 (async () => {
