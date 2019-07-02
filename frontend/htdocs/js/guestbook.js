@@ -120,6 +120,13 @@ const deleteEntry = async entry => {
   //    Wobei {ADMINPASSWORD} als Platzhalter durch das eigentliche, vom Nutzer
   //    eingegebene Passwort ersetzt werden muss. Dieses ist in dem Observable
   //    adminPassword hinterlegt.
+  try {
+    const response = await fetch(`${apiBaseUrl}/guestbook/${entry.id}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${adminPassword()}`,
+        },
+    });
   // 2) Sollte das Löschen des Eintrages erfolgreich gewesen sein so antwortet
   //    die API mit dem HTTP Status Code 204 (No Content). Das response Objekt
   //    der Fetch API verfügt über eine praktische Eigenschaft mit dem Namen "ok"
@@ -127,6 +134,11 @@ const deleteEntry = async entry => {
   //    Status Code beantwortet wurde (z.B. 200, 201 oder 204). Laden Sie in
   //    diesem Fall die aktuell dargestellte Gästebuchseite neu, so dass der eben
   //    gelöschte Beitrag nicht weiterhin angezeigt wird.
+    if (response.ok) {
+        // Sollte der letzte Eintrag der letzten Seite gelöscht worden sein,
+        // so antwortet die API einfach mit der letzten verfügbaren Seite,
+        // weshalb an dieser Stelle keine Fallunterscheidung gemacht werden muss.
+        await loadPage(currentPage());
   // 3) Prinzipiell kann die API das Löschen eines Eintrages verweigern und mit
   //    einem Fehlercode Antworten. Es gibt u.a. die folgende Möglichkeiten für
   //    einen Fehler:
@@ -138,8 +150,23 @@ const deleteEntry = async entry => {
   //    response Objektes der Fetch API zurückgreifen. Um eine Fehlermeldung
   //    anzuzeigen, rufen Sie die folgende Funktion auf:
   //      UIkit.notification('Fehlermeldung!', { status: 'danger' });
+    } else {
+        switch(response.status) {
+            case 403:
+                UIkit.notification('Keine Berechtigung! Falsches Passwort?', { status: 'danger' });
+                break;
+            case 404:
+                UIkit.notification('Der zu löschende Eintrag wurde nicht gefunden!', { status: 'danger' });
+                break;
+            default:
+                UIkit.notification(`Fehler: HTTP Status Code ${response.status}`, { status: 'danger' });
+        }
+    }
   // 4) Behandeln Sie den Fall, dass fetch() eine Exception wirft (d.h. dass das
   //    von fetch() zurückgegebene Promise in den Zustand rejected übergeht)
+  } catch (err) {
+    UIkit.notification(`Fehler! ${err.message}`, { status: 'danger' });
+  }
 }
 const sendForm = async form => {
   // Diese Funktion wird aufgerufen wenn der Nutzer den "Feedback abschicken"
